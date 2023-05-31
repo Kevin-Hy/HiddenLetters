@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Learning GSAP</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="gsap.min.js"></script>
+    </head>
+    <style type="text/css">
+        body{
+            background-color: #36393e;
+        }
+        .box,.box3,.box6,.box8 {
+            outline: 1px solid rgb(36, 33, 33);
+            fill:darkslategray;
+        }
+        .box2,.box4,.box5,.box7{
+            outline: 1px solid rgb(36, 33, 33);
+            fill: slategray;
+        }
+        .img-overlay-wrap {
+             position: relative;
+             display: inline-block;/*ensures image/svg size is same*/
+             background-color: grey;
+        }
+        .img-overlay-wrap img { 
+            opacity: 0;
+            scale: 0.5;
+        }
+        .img-overlay-wrap svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+  </style>
+    <div class="img-overlay-wrap">
+        <img class = "hello" src="hello.png">
+        <svg viewBox="30 10 350 199">
+            <rect x="0" y="-51" class = "box" width="50" height ="50"/>
+            <rect x="150" y="-51" class= "box2" width="50" height="50"/>
+            <rect x="200" y="-51" class = "box3" width="50" height ="50"/>
+            <rect x="350" y="-51" class= "box4" width="50" height="50"/>
+            <!-- boxes from left to right bottom row-->
+            <rect x="0" y="210" class = "box5" width="50" height ="50"/>
+            <rect x="150" y="210" class= "box6" width="50" height="50"/>
+            <rect x="200" y="210" class = "box7" width="50" height ="50"/>
+            <rect x="350" y="210" class= "box8" width="50" height="50"/>
+        </svg>
+      </div>
+    <body>
+        <script type ="text/javascript">
+            gsap.set(".hello", {x:-5,y:20});
+            let tl = gsap.timeline();
+            tl.to(".box",{duration: .8, x: 100, y:101, ease:"bounce"})
+              .to(".box5",{duration: .8, x:100, y:-110, ease:"bounce"},"-=.5")
+              .to(".box2",{duration: .8, y:101, ease:"bounce"},"-=.5")
+              .to(".box6",{duration: .8, y:-110, ease:"bounce"},"-=.5")
+              .to(".box3",{duration: .8, y:101, ease:"bounce"},"-=.5")
+              .to(".box7",{duration: .8, y:-110, ease:"bounce"},"-=.5")
+              .to(".box4",{duration: .8, x:-100, y:101, ease:"bounce"},"-=.5")
+              .to(".box8",{duration: .8, x:-100, y:-110, ease:"bounce"},"-=.5")
+              .to(".hello",{opacity:100})
+               //boxes leave revealing letters
+              .to(".box",{duration: 1, x: -100, y:-101, rotation:3600,transformOrigin:"50% 50%"})
+              .to(".box5",{duration: 1, x:-100, y:110, rotation:-3600,transformOrigin:"50% 50%"},"-=.75")
+              .to(".box2",{duration: 1, y:-101, rotation:3600,transformOrigin:"50% 50%"},"-=.75")
+              .to(".box6",{duration: 1, y:110, rotation:-3600,transformOrigin:"50% 50%"},"-=.75")
+              .to(".box3",{duration: 1, y:-101, rotation:3600,transformOrigin:"50% 50%"},"-=.75")
+              .to(".box7",{duration: 1, y:110, rotation:-3600,transformOrigin:"50% 50%"},"-=.75")
+              .to(".box4",{duration: 1, x:100, y:-101, rotation:3600,transformOrigin:"50% 50%"},"-=.75")
+              .to(".box8",{duration: 1, x:100, y:110, rotation:-3600,transformOrigin:"50% 50%"},"-=.75");
+        </script>
+    </body>
+</html>
